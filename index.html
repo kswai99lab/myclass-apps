@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>우리 반 앱 진열장 🏫✨</title>
+  
+  <!-- Tailwind CSS 로드 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 구글 폰트 (귀엽고 동글동글한 Jua 폰트 적용) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+  <style>
+    /* 전체 글꼴 적용 및 부드러운 배경색 */
+    body {
+      font-family: 'Jua', sans-serif;
+      background-color: #FFF9E6; /* 따뜻한 크림색 배경 */
+      background-image: radial-gradient(#FFD1DC 1px, transparent 1px);
+      background-size: 20px 20px; /* 귀여운 도트 패턴 배경 */
+    }
+
+    /* 카드 호버(마우스 올렸을 때) 통통 튀는 애니메이션 */
+    .app-card {
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .app-card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 이모지 흔들리는 애니메이션 */
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+    }
+    .app-card:hover .emoji-icon {
+      animation: wiggle 0.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="text-gray-700 min-h-screen flex flex-col items-center py-10 px-5">
+
+  <!-- 헤더 (제목) -->
+  <header class="text-center mb-10 mt-5">
+    <h1 class="text-4xl md:text-5xl text-pink-500 mb-2 drop-shadow-md">
+      ✨ 우리 반 앱 진열장 ✨
+    </h1>
+    <p class="text-lg md:text-xl text-gray-600 bg-white/80 px-4 py-1 rounded-full inline-block shadow-sm">
+      오늘도 즐겁고 신나는 수업 시간! 🚀
+    </p>
+  </header>
+
+  <!-- 앱 카드가 들어갈 그리드 컨테이너 -->
+  <main id="app-container" class="w-full max-w-5xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 pb-10">
+    <!-- 자바스크립트를 통해 이곳에 카드가 자동으로 생성됩니다. -->
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="mt-auto text-center text-gray-500 bg-white/70 px-6 py-2 rounded-2xl shadow-sm">
+    선생님과 함께하는 행복한 교실 🏫💖
+  </footer>
+
+  <!-- 자바스크립트 영역 -->
+  <script>
+    // =========================================================================
+    // 💡 [선생님 설정 영역] 여기에 새로운 앱을 추가하거나 수정하세요!
+    // 앱을 추가하려면 아래 배열에 중괄호 { ... } 한 줄을 추가해 주시면 됩니다.
+    // =========================================================================
+    const appList = [
+      { name: "자리 뽑기", url: "https://example.com/seat", emoji: "🎲", bgColor: "#FFD1DC" }, // 파스텔 핑크
+      { name: "날씨와 옷차림", url: "https://example.com/weather", emoji: "🌤️", bgColor: "#FFDFBA" }, // 파스텔 오렌지
+      { name: "자연물 도감", url: "https://example.com/nature", emoji: "🌿", bgColor: "#BAFFC9" }, // 파스텔 그린
+      { name: "타자 연습", url: "https://example.com/typing", emoji: "⌨️", bgColor: "#BAE1FF" }, // 파스텔 블루
+      { name: "오늘의 퀴즈", url: "https://example.com/quiz", emoji: "❓", bgColor: "#E8B2FF" }, // 파스텔 퍼플
+      { name: "그림 판", url: "https://example.com/draw", emoji: "🎨", bgColor: "#FFFFBA" }, // 파스텔 옐로우
+      { name: "학급 알림장", url: "https://example.com/notice", emoji: "📢", bgColor: "#FFC2E2" }, // 진한 파스텔 핑크
+      { name: "타이머", url: "https://example.com/timer", emoji: "⏱️", bgColor: "#C2F0E0" } // 민트
+    ];
+    // =========================================================================
+
+    // 카드를 화면에 그려주는 함수
+    function renderAppCards() {
+      const container = document.getElementById('app-container');
+      
+      // 기존 내용 초기화
+      container.innerHTML = '';
+
+      // 앱 목록을 하나씩 돌면서 HTML 태그 생성
+      appList.forEach(app => {
+        // 새 탭에서 열리도록 <a> 태그 생성 (target="_blank" 적용)
+        const cardLink = document.createElement('a');
+        cardLink.href = app.url;
+        cardLink.target = '_blank';
+        // 보안 및 성능을 위한 rel 속성 추가
+        cardLink.rel = 'noopener noreferrer'; 
+        
+        // 카드 스타일 및 클래스 적용 (Tailwind 클래스와 커스텀 클래스 혼합)
+        cardLink.className = "app-card flex flex-col items-center justify-center p-6 rounded-[2rem] shadow-sm cursor-pointer border-4 border-white/50 text-center no-underline";
+        
+        // 개별 배경색 적용
+        cardLink.style.backgroundColor = app.bgColor;
+
+        // 카드 내부 HTML 내용 삽입
+        cardLink.innerHTML = `
+          <div class="emoji-icon text-6xl md:text-7xl mb-4 drop-shadow-sm">
+            ${app.emoji}
+          </div>
+          <h2 class="text-xl md:text-2xl text-gray-800 drop-shadow-sm tracking-wide">
+            ${app.name}
+          </h2>
+        `;
+
+        // 컨테이너에 카드 추가
+        container.appendChild(cardLink);
+      });
+    }
+
+    // 웹페이지가 모두 불러와지면 카드 그리기 함수 실행
+    document.addEventListener('DOMContentLoaded', renderAppCards);
+  </script>
+
+</body>
+</html>
