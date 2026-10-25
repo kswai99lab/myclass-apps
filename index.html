@@ -14,12 +14,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
   <style>
-    /* 전체 글꼴 적용 및 부드러운 배경색 */
+    /* 전체 글꼴 적용 및 배경 이미지 설정 */
     body {
       font-family: 'Jua', sans-serif;
-      background-color: #FFF9E6; /* 따뜻한 크림색 배경 */
-      background-image: radial-gradient(#FFD1DC 1px, transparent 1px);
-      background-size: 20px 20px; /* 귀여운 도트 패턴 배경 */
+      /* bg.jpg 위에 흰색 반투명 막(rgba 0.6)을 씌워 글씨가 잘 보이게 설정 */
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+        url('bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
 
     /* 카드 호버(마우스 올렸을 때) 통통 튀는 애니메이션 */
@@ -28,7 +33,7 @@
     }
     .app-card:hover {
       transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
     }
 
     /* 이모지 흔들리는 애니메이션 */
@@ -49,7 +54,7 @@
     <h1 class="text-4xl md:text-5xl text-pink-500 mb-2 drop-shadow-md">
       ✨ 우리 반 앱 진열장 ✨
     </h1>
-    <p class="text-lg md:text-xl text-gray-600 bg-white/80 px-4 py-1 rounded-full inline-block shadow-sm">
+    <p class="text-lg md:text-xl text-gray-700 bg-white/90 px-4 py-1 rounded-full inline-block shadow-sm font-semibold">
       오늘도 즐겁고 신나는 수업 시간! 🚀
     </p>
   </header>
@@ -60,7 +65,7 @@
   </main>
 
   <!-- 푸터 -->
-  <footer class="mt-auto text-center text-gray-500 bg-white/70 px-6 py-2 rounded-2xl shadow-sm">
+  <footer class="mt-auto text-center text-gray-600 bg-white/80 px-6 py-2 rounded-2xl shadow-sm font-medium">
     선생님과 함께하는 행복한 교실 🏫💖
   </footer>
 
@@ -94,7 +99,7 @@
         cardLink.rel = 'noopener noreferrer'; 
         
         // 카드 스타일 및 클래스 적용 (Tailwind 클래스와 커스텀 클래스 혼합)
-        cardLink.className = "app-card flex flex-col items-center justify-center p-6 rounded-[2rem] shadow-sm cursor-pointer border-4 border-white/50 text-center no-underline";
+        cardLink.className = "app-card flex flex-col items-center justify-center p-6 rounded-[2rem] shadow-sm cursor-pointer border-4 border-white/70 text-center no-underline";
         
         // 개별 배경색 적용
         cardLink.style.backgroundColor = app.bgColor;
